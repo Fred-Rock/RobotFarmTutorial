@@ -776,6 +776,7 @@ MonoBehaviour:
   _testData: {fileID: 11400000, guid: d959c6c72c3edb147805d78887af7fcb, type: 2}
   _unitMover: {fileID: 1062139038}
   _destination: {x: 2, y: 2, z: 2}
+  _zone: {fileID: 465598056}
 --- !u!114 &1062139038
 MonoBehaviour:
   m_ObjectHideFlags: 0

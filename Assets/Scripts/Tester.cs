@@ -7,6 +7,7 @@ public class Tester : MonoBehaviour
     [SerializeField] private UnitData _testData;
     [SerializeField] private UnitMover _unitMover;
     [SerializeField] private Vector3 _destination;
+    [SerializeField] private Zone _zone;
 
     private void Update()
     {
@@ -14,7 +15,13 @@ public class Tester : MonoBehaviour
         {
             Vector3 spawnPoint = new Vector3(_unitSpawner.transform.position.x, _unitSpawner.transform.position.y + 1, _unitSpawner.transform.position.z);
             Unit unit = SpawnUnit(_testData, spawnPoint);
-            _unitMover.MoveUnit(unit, _destination);
+            Vector3 reservation = _zone.ReservePosition(unit.transform.position);
+            //_unitMover.MoveUnit(unit, _destination);
+        }
+
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            
         }
     }
 
