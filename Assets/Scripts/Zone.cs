@@ -9,6 +9,9 @@ public class Zone : MonoBehaviour
     private List<Vector3> _vacancies = new List<Vector3>();
     private List<Vector3> _reservations = new List<Vector3>();
     private List<Vector3> _occupiedPositions = new List<Vector3>();
+    private int _openReservations;
+
+    public int OpenReservations { get { return _openReservations; } }
 
     private void Awake()
     {
@@ -29,6 +32,8 @@ public class Zone : MonoBehaviour
             Vector3 position = _occupiablePoints[i].position;
             _vacancies.Add(position);
         }
+        // Initialize open reservations property
+        _openReservations = _vacancies.Count;
     }
 
     public Vector3 ReservePosition(Vector3 currentPosition)
@@ -39,8 +44,10 @@ public class Zone : MonoBehaviour
             reservation = _vacancies[0];
             _vacancies.Remove(reservation);
             _reservations.Add(reservation);
+
+            _openReservations--;
+            //Debug.Log($"{this} has {_openReservations} spots left.");
         }
-        Debug.Log($"Reserving {reservation}");
         return reservation;
     }
 
@@ -59,6 +66,9 @@ public class Zone : MonoBehaviour
         {
             _occupiedPositions.Remove(position);
             _vacancies.Add(position);
+
+            _openReservations++;
+            //Debug.Log($"{this} has {_openReservations} spots left.");
         }
     }
 
